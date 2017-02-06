@@ -7,11 +7,9 @@ var carDealsCachePagesName = 'carDealsCachePagesV1';
 var carDealsCacheImagesName = 'carDealsCacheImagesV1'
 
 var carDealsCacheFiles = [
-  'js/app.js',
   'js/carService.js',
   'js/clientStorage.js',
   'js/swRegister.js',
-  'js/template.js',
   './',
   'resources/es6-promise/es6-promise.js',
   'resources/fetch/fetch.js',
