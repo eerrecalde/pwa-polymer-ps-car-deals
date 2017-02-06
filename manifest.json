@@ -1,0 +1,7 @@
+{
+  "name": "Polymer Car Deals",
+  "short_name": "polymer-car-deals",
+  "description": "Demo of PWA",
+  "start_url": "/",
+  "display": "standalone"
+}

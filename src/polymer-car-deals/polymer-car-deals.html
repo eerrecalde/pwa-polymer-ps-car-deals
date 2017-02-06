@@ -1,0 +1,106 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-elements/paper-elements.html">
+
+<dom-module id="polymer-car-deals">
+  <link rel="import" href="../../resources/custom-theme/custom-theme.css" type="css">
+  <template>
+    <style>
+      .car-list {
+        padding: 8px;
+        display:flex;
+        flex-wrap:wrap;
+        align-items: stretch;
+      }
+
+      .car-list > paper-card {
+        flex:1 0 350px;
+        align-self: stretch;
+        max-width:100%;
+        height: 250px;
+        overflow-y: hidden;
+        margin:5px;
+      }
+
+      .car-list > paper-card:nth-child(2n+3){
+        flex-basis:300px;
+      }
+
+      .car-list > paper-card:nth-child(4n+5){
+        flex-basis:450px;
+      }
+
+      .car-list > paper-card .car{
+        cursor: pointer;
+        color: #ffffff;
+        height: 250px;
+        background-size: cover;
+      }
+
+
+      @media screen and(max-width:500px){
+        .car-list > paper-card{
+           flex-basis:100% !important;
+           max-width:100%;
+        }
+      }
+
+    </style>
+
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header>
+        <paper-toolbar>
+          <span class="title">Title</span>
+          <paper-button raised class="secondary" on-tap="reload">Refresh</paper-button>
+        </paper-toolbar>
+      </header>
+      <main class="mdl-layout__content">
+        <div id="first-load" class="center" hidden="[[isContentLoaded]]">
+            <svg fill="#f44336" height="300" viewBox="0 0 24 24" width="300" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"></path>
+                <path d="M0 0h24v24H0z" fill="none"></path>
+            </svg>
+            <p>Parking your car deals</p>
+        </div>
+        <div class="center" id="connection-status"></div>
+        <div class="mdl-grid">
+          <div class="car-list">
+            <template is="dom-repeat" items="[[carList]]">
+              <paper-card on-tap="loadCarPage" data-index$="{{index}}">
+                <div class="car" style="background-image: url('[[item.image]]')">
+                  <span class="mdl-card__title-text">
+                    [[item.brand]] [[item.model]] [[item.year]] ($[[item.price]])
+                  </span>
+                </div>
+              </paper-card>
+            </template>
+          </div>
+        </div>
+        <div class="center">
+          <paper-button
+            raised
+            on-tap="loadMoreRequest"
+            class="primary">
+            Show More
+          </paper-button>
+        </div>
+      </main>
+    </div>
+  </template>
+
+  <script src="../../resources/es6-promise/es6-promise.js" charset="utf-8"></script>
+  <script src="../../resources/fetch/fetch.js" charset="utf-8"></script>
+  <script src="../../resources/localforage/localforage.min.js" charset="utf-8"></script>
+  <script src="../../resources/localforage/localforage-getitems.js" charset="utf-8"></script>
+  <script src="../../resources/localforage/localforage-setitems.js" charset="utf-8"></script>
+  <script src="../../resources/systemjs/system.js" charset="utf-8"></script>
+
+  <script src="../../js/clientStorage.js" charset="utf-8"></script>
+  <script src="../../js/carService.js" charset="utf-8"></script>
+
+  <script src="polymer-car-deals.js" charset="utf-8"></script>
+
+  <!-- <script type="text/javascript">
+    System.import('../../js/app.js');
+  </script> -->
+
+</dom-module>
